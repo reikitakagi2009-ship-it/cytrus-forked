@@ -61,7 +61,7 @@ jobs:
         cd build
         cmake .. \
           -DCMAKE_SYSTEM_NAME=iOS \
-          -DCMAKE_OSX_DEPLOYMENT_TARGET=13.0 \
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=26.0 \
           -DCMAKE_IOS_ARCHITECTURES="arm64;x86_64" \
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake \
@@ -155,7 +155,7 @@ jobs:
         ./build-cytrus-ios.sh
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: cytrus-ios-libretro-core
         path: |
