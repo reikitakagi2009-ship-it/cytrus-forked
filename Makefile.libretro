@@ -90,6 +90,7 @@ endif
 CXXFLAGS += -O2 -g -Wall -Wextra -fno-strict-aliasing -fno-exceptions -fvisibility=hidden $(fpic)
 CXXFLAGS += -std=c++17
 CFLAGS += -O2 -g -Wall -Wextra $(fpic)
+INCFLAGS += -I$(CURDIR)
 
 # Include directories
 INCLUDES := -I. \
