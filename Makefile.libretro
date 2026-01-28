@@ -36,6 +36,10 @@ else ifeq ($(platform), osx)
    SHARED := -dynamiclib
    CXXFLAGS += -D__APPLE__ -stdlib=libc++
    LDFLAGS += -framework OpenGL -framework Foundation -framework AppKit
+   
+   # Boost configuration for macOS
+   BOOST_ROOT ?= /usr/local/include/boost
+   INCLUDES += -I$(BOOST_ROOT)
 
 # iOS (arm64)
 else ifeq ($(platform), ios-arm64)
@@ -56,6 +60,10 @@ else ifeq ($(platform), ios-arm64)
    CFLAGS += -miphoneos-version-min=13.0
    LDFLAGS += -framework OpenGL -framework Foundation -framework UIKit
    LDFLAGS += -miphoneos-version-min=13.0
+   
+   # Boost configuration for iOS
+   BOOST_ROOT ?= /usr/local/include/boost
+   INCLUDES += -I$(BOOST_ROOT)
 
 # iOS (armv7)
 else ifeq ($(platform), ios)
@@ -76,6 +84,10 @@ else ifeq ($(platform), ios)
    CFLAGS += -miphoneos-version-min=9.0
    LDFLAGS += -framework OpenGL -framework Foundation -framework UIKit
    LDFLAGS += -miphoneos-version-min=9.0
+   
+   # Boost configuration for iOS
+   BOOST_ROOT ?= /usr/local/include/boost
+   INCLUDES += -I$(BOOST_ROOT)
 
 # Windows
 else ifeq ($(platform), win)
