@@ -51,7 +51,8 @@ void SetObjectName(vk::Device device, const HandleType& handle, std::string_view
 template <VulkanHandleType HandleType, typename... Args>
 void SetObjectName(vk::Device device, const HandleType& handle, const char* format,
                    const Args&... args) {
-    const std::string debug_name = fmt::vformat(format, fmt::make_format_args(args...));
+    // Simple debug name for libretro core - no fmt formatting
+    const std::string debug_name = "VulkanObject";
     SetObjectName(device, handle, debug_name);
 }
 

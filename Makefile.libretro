@@ -61,9 +61,8 @@ else ifeq ($(platform), ios-arm64)
    LDFLAGS += -framework OpenGL -framework Foundation -framework UIKit
    LDFLAGS += -miphoneos-version-min=13.0
    
-   # fmt library configuration for iOS
-   FMT_ROOT ?= $(shell brew --prefix fmt)/include
-   INCLUDES += -I$(FMT_ROOT)
+   # retroarch-apple-deps configuration for iOS
+   INCLUDES += -I/usr/local/share/retroarch-apple-deps/include
    
    # Boost configuration for iOS
    BOOST_ROOT ?= $(shell brew --prefix boost)/include
@@ -89,9 +88,8 @@ else ifeq ($(platform), ios)
    LDFLAGS += -framework OpenGL -framework Foundation -framework UIKit
    LDFLAGS += -miphoneos-version-min=9.0
    
-   # fmt library configuration for iOS
-   FMT_ROOT ?= $(shell brew --prefix fmt)/include
-   INCLUDES += -I$(FMT_ROOT)
+   # retroarch-apple-deps configuration for iOS
+   INCLUDES += -I/usr/local/share/retroarch-apple-deps/include
    
    # Boost configuration for iOS
    BOOST_ROOT ?= $(shell brew --prefix boost)/include

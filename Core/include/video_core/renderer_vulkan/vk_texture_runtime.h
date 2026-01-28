@@ -275,8 +275,8 @@ class DebugScope {
 public:
     template <typename... T>
     explicit DebugScope(TextureRuntime& runtime, Common::Vec4f color,
-                        fmt::format_string<T...> format, T... args)
-        : DebugScope{runtime, color, fmt::format(format, std::forward<T>(args)...)} {}
+                        const char* format, T... args)
+        : DebugScope{runtime, color, "TextureDebug"} {}
     explicit DebugScope(TextureRuntime& runtime, Common::Vec4f color, std::string_view label);
     ~DebugScope();
 

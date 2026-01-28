@@ -21,7 +21,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        brew install fmt openal-soft sdl3
+        # Install retroarch-apple-deps (includes fmt and other dependencies)
+        git clone https://github.com/warmenhoven/retroarch-apple-deps.git retroarch-apple-deps
+        sudo ln -s $PWD/retroarch-apple-deps /usr/local/share
+        
+        # Install additional dependencies
+        brew install openal-soft sdl3
 
     - name: Build core
       run: |

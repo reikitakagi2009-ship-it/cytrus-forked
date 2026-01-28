@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include <fmt/format.h>
-
+#include <sstream>
+#include <iomanip>
 #include <string>
 #include "common/assert.h"
 #include "common/bit_field.h"
@@ -86,9 +86,12 @@ struct MemoryFillConfig {
     }
 
     inline std::string DebugName() const {
-        return fmt::format("from {:#X} to {:#X} with {}-bit value {:#X}", GetStartAddress(),
-                           GetEndAddress(), fill_32bit ? "32" : (fill_24bit ? "24" : "16"),
-                           value_32bit);
+        std::ostringstream oss;
+        oss << "from " << std::hex << GetStartAddress() 
+            << " to " << std::hex << GetEndAddress() 
+            << " with " << (fill_32bit ? "32" : (fill_24bit ? "24" : "16")) 
+            << "-bit value " << std::hex << value_32bit;
+        return oss.str();
     }
 };
 static_assert(sizeof(MemoryFillConfig) == 0x10);
@@ -149,10 +152,13 @@ struct DisplayTransferConfig {
     }
 
     inline std::string DebugName() const noexcept {
-        return fmt::format("from {:#x} to {:#x} with {} scaling and stride {}, width {}",
-                           GetPhysicalInputAddress(), GetPhysicalOutputAddress(),
-                           scaling == NoScale ? "no" : (scaling == ScaleX ? "X" : "XY"),
-                           input_width.Value(), output_width.Value());
+        std::ostringstream oss;
+        oss << "from " << std::hex << GetPhysicalInputAddress() 
+            << " to " << std::hex << GetPhysicalOutputAddress()
+            << " with " << (scaling == NoScale ? "no" : (scaling == ScaleX ? "X" : "XY"))
+            << " scaling and stride " << input_width.Value() 
+            << ", width " << output_width.Value();
+        return oss.str();
     }
 
     union {
