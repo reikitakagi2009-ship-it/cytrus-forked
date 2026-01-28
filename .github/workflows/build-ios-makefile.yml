@@ -16,7 +16,6 @@ on:
       - 'cytrus_*.h'
       - 'Makefile'
       - '.github/workflows/build-ios-makefile.yml'
-  workflow_dispatch:
 
 jobs:
   build-ios:
