@@ -21,9 +21,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        brew install boost
+        # Install essential dependencies for iOS
+        echo "Installing dependencies..."
         brew install openal-soft
         brew install sdl3
+        
+        echo "Dependencies installed successfully!"
 
     - name: Build core using individual core method
       run: |
@@ -55,20 +58,20 @@ jobs:
           
           # Create info file
           cat > dist/ios-arm64/cytrus_libretro.info << 'INFO_EOF'
-        display_name = "Cytrus (Nintendo 3DS)"
-        corename = "Cytrus"
-        author = "Citra Team / RetroArch Port"
-        supported_extensions = "3ds|3dsx|cia|elf"
-        coreversion = "1.0.0"
-        manufacturer = "Nintendo"
-        categories = "Emulator"
-        systemname = "Nintendo 3DS"
-        systemid = "nintendo_3ds"
-        database = "Nintendo - Nintendo 3DS"
-        license = "GPLv2"
-        permissions = ""
-        notes = "Nintendo 3DS emulator based on Citra. Requires system files and firmware for full functionality."
-        INFO_EOF
+            display_name = "Cytrus (Nintendo 3DS)"
+            corename = "Cytrus"
+            author = "Citra Team / RetroArch Port"
+            supported_extensions = "3ds|3dsx|cia|elf"
+            coreversion = "1.0.0"
+            manufacturer = "Nintendo"
+            categories = "Emulator"
+            systemname = "Nintendo 3DS"
+            systemid = "nintendo_3ds"
+            database = "Nintendo - Nintendo 3DS"
+            license = "GPLv2"
+            permissions = ""
+            notes = "Nintendo 3DS emulator based on Citra. Requires system files and firmware for full functionality."
+INFO_EOF
         else
           echo "Build failed!"
           echo "Available files:"

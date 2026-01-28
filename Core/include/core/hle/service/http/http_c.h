@@ -309,7 +309,7 @@ public:
 struct SessionData : public Kernel::SessionRequestHandler::SessionDataBase {
     /// The HTTP context that is currently bound to this session, this can be empty if no context
     /// has been bound. Certain commands can only be called on a session with a bound context.
-    boost::optional<Context::Handle> current_http_context;
+    std::optional<Context::Handle> current_http_context;
 
     u32 session_id;
 

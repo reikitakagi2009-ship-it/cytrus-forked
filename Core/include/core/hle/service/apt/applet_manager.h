@@ -330,12 +330,12 @@ public:
                                       ApplicationJumpFlags flags);
     Result DoApplicationJump(const DeliverArg& arg);
 
-    boost::optional<DeliverArg> ReceiveDeliverArg() {
+    std::optional<DeliverArg> ReceiveDeliverArg() {
         auto arg = deliver_arg;
-        deliver_arg = boost::none;
+        deliver_arg = std::nullopt;
         return arg;
     }
-    void SetDeliverArg(boost::optional<DeliverArg> arg) {
+    void SetDeliverArg(std::optional<DeliverArg> arg) {
         deliver_arg = std::move(arg);
     }
 
@@ -408,18 +408,18 @@ private:
 
     /// Parameter data to be returned in the next call to Glance/ReceiveParameter.
     // NOTE: A bug in gcc prevents serializing std::optional
-    boost::optional<MessageParameter> next_parameter;
+    std::optional<MessageParameter> next_parameter;
 
     /// This parameter will be sent to the application/applet once they register themselves by using
     /// APT::Initialize.
-    boost::optional<MessageParameter> delayed_parameter;
+    std::optional<MessageParameter> delayed_parameter;
 
     ApplicationJumpParameters app_jump_parameters{};
-    boost::optional<ApplicationStartParameters> app_start_parameters{};
-    boost::optional<DeliverArg> deliver_arg{};
+    std::optional<ApplicationStartParameters> app_start_parameters{};
+    std::optional<DeliverArg> deliver_arg{};
 
-    boost::optional<CaptureBufferInfo> capture_info;
-    boost::optional<CaptureBufferInfo> capture_buffer_info;
+    std::optional<CaptureBufferInfo> capture_info;
+    std::optional<CaptureBufferInfo> capture_buffer_info;
 
     static constexpr std::size_t NumAppletSlot = 4;
 

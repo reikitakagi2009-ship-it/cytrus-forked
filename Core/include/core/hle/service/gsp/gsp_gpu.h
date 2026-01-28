@@ -391,7 +391,7 @@ private:
     bool first_initialization = true;
 
     /// VRAM copy saved using SaveVramSysArea.
-    boost::optional<std::vector<u8>> saved_vram;
+    std::optional<std::vector<u8>> saved_vram;
 
     /// Maximum number of threads that can be registered at the same time in the GSP module.
     static constexpr u32 MaxGSPThreads = 4;

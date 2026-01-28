@@ -505,7 +505,7 @@ private:
     /// Callback to parse and handle a received wifi packet.
     void OnWifiPacketReceived(const Network::WifiPacket& packet);
 
-    boost::optional<Network::MacAddress> GetNodeMacAddress(u16 dest_node_id, u8 flags);
+    std::optional<Network::MacAddress> GetNodeMacAddress(u16 dest_node_id, u8 flags);
 
     // Event that is signaled every time the connection status changes.
     std::shared_ptr<Kernel::Event> connection_status_event;

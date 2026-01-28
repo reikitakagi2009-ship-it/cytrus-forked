@@ -472,14 +472,12 @@ private:
     std::function<bool()> mic_permission_func;
     bool mic_permission_granted = false;
 
-    boost::optional<Service::APT::DeliverArg> restore_deliver_arg;
-    boost::optional<Service::PLGLDR::PLG_LDR::PluginLoaderContext> restore_plugin_context;
+    std::optional<Service::APT::DeliverArg> restore_deliver_arg;
+    std::optional<Service::PLGLDR::PLG_LDR::PluginLoaderContext> restore_plugin_context;
 
     std::vector<u64> lle_modules;
 
-    friend class boost::serialization::access;
-    template <typename Archive>
-    void serialize(Archive& ar, const unsigned int file_version);
+    // Serialization removed for libretro core
 };
 
 [[nodiscard]] inline ARM_Interface& GetRunningCore() {

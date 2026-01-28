@@ -156,43 +156,51 @@ void cytrus_video_render_frame(void) {
     // Render based on current layout
     switch (current_layout) {
         case ScreenLayout::TopBottom:
-            // Top screen
-            convert_framebuffer_to_rgba(top_screen_data, video_buffer,
-                                      TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT,
-                                      0, 0, video_pitch);
-            
-            // Bottom screen (centered)
-            unsigned bottom_x = (video_width - BOTTOM_SCREEN_WIDTH * resolution_scale) / 2;
-            unsigned bottom_y = TOP_SCREEN_HEIGHT * resolution_scale;
-            convert_framebuffer_to_rgba(bottom_screen_data, video_buffer,
-                                      BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT,
-                                      bottom_x, bottom_y, video_pitch);
+            {
+                // Top screen
+                convert_framebuffer_to_rgba(top_screen_data, video_buffer,
+                                          TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT,
+                                          0, 0, video_pitch);
+                
+                // Bottom screen (centered)
+                unsigned bottom_x = (video_width - BOTTOM_SCREEN_WIDTH * resolution_scale) / 2;
+                unsigned bottom_y = TOP_SCREEN_HEIGHT * resolution_scale;
+                convert_framebuffer_to_rgba(bottom_screen_data, video_buffer,
+                                          BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT,
+                                          bottom_x, bottom_y, video_pitch);
+            }
             break;
             
         case ScreenLayout::SideBySide:
-            // Top screen
-            convert_framebuffer_to_rgba(top_screen_data, video_buffer,
-                                      TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT,
-                                      0, 0, video_pitch);
-            
-            // Bottom screen
-            convert_framebuffer_to_rgba(bottom_screen_data, video_buffer,
-                                      BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT,
-                                      TOP_SCREEN_WIDTH * resolution_scale, 0, video_pitch);
+            {
+                // Top screen
+                convert_framebuffer_to_rgba(top_screen_data, video_buffer,
+                                          TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT,
+                                          0, 0, video_pitch);
+                
+                // Bottom screen
+                convert_framebuffer_to_rgba(bottom_screen_data, video_buffer,
+                                          BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT,
+                                          TOP_SCREEN_WIDTH * resolution_scale, 0, video_pitch);
+            }
             break;
             
         case ScreenLayout::TopOnly:
-            // Only top screen
-            convert_framebuffer_to_rgba(top_screen_data, video_buffer,
-                                      TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT,
-                                      0, 0, video_pitch);
+            {
+                // Only top screen
+                convert_framebuffer_to_rgba(top_screen_data, video_buffer,
+                                          TOP_SCREEN_WIDTH, TOP_SCREEN_HEIGHT,
+                                          0, 0, video_pitch);
+            }
             break;
             
         case ScreenLayout::BottomOnly:
-            // Only bottom screen
-            convert_framebuffer_to_rgba(bottom_screen_data, video_buffer,
-                                      BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT,
-                                      0, 0, video_pitch);
+            {
+                // Only bottom screen
+                convert_framebuffer_to_rgba(bottom_screen_data, video_buffer,
+                                          BOTTOM_SCREEN_WIDTH, BOTTOM_SCREEN_HEIGHT,
+                                          0, 0, video_pitch);
+            }
             break;
     }
     
