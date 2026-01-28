@@ -8,19 +8,19 @@
 #include <retro_miscellaneous.h>
 
 // Cytrus core includes
-#include "Core/core/core.h"
-#include "Core/core/loader/loader.h"
-#include "Core/core/hle/service/cfg/cfg.h"
-#include "Core/core/hle/service/am/am.h"
-#include "Core/core/frontend/applets/default_applets.h"
-#include "Core/input_common/main.h"
-#include "Core/network/network.h"
-#include "Core/audio_core/audio_interface.h"
-#include "Core/video_core/gpu.h"
-#include "Core/video_core/renderer_base.h"
-#include "Core/common/settings.h"
-#include "Core/common/file_util.h"
-#include "Core/common/logging/log.h"
+#include "core/core.h"
+#include "core/loader/loader.h"
+#include "core/hle/service/cfg/cfg.h"
+#include "core/hle/service/am/am.h"
+#include "core/frontend/applets/default_applets.h"
+#include "input_common/main.h"
+#include "network/network.h"
+#include "audio_core/audio_interface.h"
+#include "video_core/gpu.h"
+#include "video_core/renderer_base.h"
+#include "common/settings.h"
+#include "common/file_util.h"
+#include "common/logging/log.h"
 
 // Frontend interface
 extern "C" {
