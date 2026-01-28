@@ -7,8 +7,6 @@
 #include <algorithm>
 #include <array>
 #include <deque>
-#include <boost/serialization/deque.hpp>
-#include <boost/serialization/split_member.hpp>
 #include "common/common_types.h"
 
 namespace Common {
@@ -181,7 +179,7 @@ private:
         }
     }
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void save(Archive& ar, const unsigned int file_version) const {
         const s64 idx = ToIndex(first);

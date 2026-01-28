@@ -4,8 +4,6 @@
 
 #include <chrono>
 #include <cstring>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/binary_object.hpp>
 #include "common/archives.h"
 #include "common/assert.h"
 #include "common/settings.h"
@@ -176,8 +174,6 @@ SharedPageDef& Handler::GetSharedPage() {
 
 template <class Archive>
 void Handler::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<BackingMem>(*this);
-    ar& boost::serialization::make_binary_object(&shared_page, sizeof(shared_page));
 }
 SERIALIZE_IMPL(Handler)
 

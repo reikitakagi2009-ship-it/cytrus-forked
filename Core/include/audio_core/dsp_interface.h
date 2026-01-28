@@ -6,7 +6,6 @@
 
 #include <memory>
 #include <span>
-#include <boost/serialization/access.hpp>
 #include "audio_core/audio_types.h"
 #include "audio_core/time_stretch.h"
 #include "common/common_types.h"
@@ -126,7 +125,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {}
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace AudioCore

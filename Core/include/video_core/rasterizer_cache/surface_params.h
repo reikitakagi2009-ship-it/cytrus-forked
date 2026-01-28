@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include <boost/icl/right_open_interval.hpp>
 #include "common/math_util.h"
 #include "video_core/custom_textures/custom_format.h"
 #include "video_core/rasterizer_cache/pixel_format.h"
 
 namespace VideoCore {
 
-using SurfaceInterval = boost::icl::right_open_interval<PAddr>;
+// Simplified surface interval for libretro core
+using SurfaceInterval = std::pair<PAddr, PAddr>;
 
 constexpr std::size_t MAX_PICA_LEVELS = 8;
 

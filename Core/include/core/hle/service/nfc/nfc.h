@@ -5,7 +5,6 @@
 #pragma once
 
 #include <memory>
-#include <boost/serialization/binary_object.hpp>
 #include "common/common_types.h"
 #include "core/hle/service/nfc/nfc_device.h"
 #include "core/hle/service/service.h"
@@ -376,7 +375,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 void InstallInterfaces(Core::System& system);

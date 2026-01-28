@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 #include <boost/container/small_vector.hpp>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "common/serialization/boost_small_vector.hpp"
 #include "common/settings.h"
@@ -76,7 +75,7 @@ public:
     private:
         template <class Archive>
         void serialize(Archive& ar, const unsigned int);
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct SessionInfo {
@@ -89,7 +88,7 @@ public:
         SessionInfo() = default;
         template <class Archive>
         void serialize(Archive& ar, const unsigned int);
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
 protected:
@@ -114,7 +113,7 @@ protected:
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 // NOTE: The below classes are ephemeral and don't need serialization
@@ -159,7 +158,7 @@ private:
         ar & size;
         ar & perms;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /**
@@ -239,7 +238,7 @@ public:
     private:
         template <class Archive>
         void serialize(Archive& ar, const unsigned int) {}
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     /**
@@ -382,16 +381,16 @@ private:
     std::shared_ptr<ServerSession> session;
     std::shared_ptr<Thread> thread;
     // TODO(yuriks): Check common usage of this and optimize size accordingly
-    boost::container::small_vector<std::shared_ptr<Object>, 8> request_handles;
+    // boost::container::small_vector<std::shared_ptr<Object>, 8> request_handles;
     // The static buffers will be created when the IPC request is translated.
     std::array<std::vector<u8>, IPC::MAX_STATIC_BUFFERS> static_buffers;
     // The mapped buffers will be created when the IPC request is translated
-    boost::container::small_vector<MappedBuffer, 8> request_mapped_buffers;
+    // boost::container::small_vector<MappedBuffer, 8> request_mapped_buffers;
 
     HLERequestContext();
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Kernel

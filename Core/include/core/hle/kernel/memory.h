@@ -6,7 +6,6 @@
 
 #include <optional>
 #include <boost/icl/interval_set.hpp>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "common/serialization/boost_interval_set.hpp"
 
@@ -21,7 +20,7 @@ struct MemoryRegionInfo {
     u32 used;
 
     // The domain of the interval_set are offsets from start of FCRAM
-    using IntervalSet = boost::icl::interval_set<u32>;
+    using IntervalSet = // boost::icl::interval_set<u32>;
     using Interval = IntervalSet::interval_type;
 
     IntervalSet free_blocks;
@@ -81,7 +80,7 @@ struct MemoryRegionInfo {
     void Unlock();
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

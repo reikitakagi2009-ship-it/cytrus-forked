@@ -68,12 +68,10 @@ class RasterizerCache {
     using Framebuffer = typename T::Framebuffer;
     using DebugScope = typename T::DebugScope;
 
-    using SurfaceMap = boost::icl::interval_map<PAddr, SurfaceId, boost::icl::partial_absorber,
-                                                std::less, boost::icl::inplace_plus,
-                                                boost::icl::inter_section, SurfaceInterval>;
-
+    // Simplified surface map for libretro core
+    using SurfaceMap = std::map<PAddr, SurfaceId>;
     using SurfaceRect_Tuple = std::pair<SurfaceId, Common::Rectangle<u32>>;
-    using PageMap = boost::icl::interval_map<u32, int>;
+    using PageMap = std::map<u32, int>;
 
 public:
     explicit RasterizerCache(Memory::MemorySystem& memory, CustomTexManager& custom_tex_manager,

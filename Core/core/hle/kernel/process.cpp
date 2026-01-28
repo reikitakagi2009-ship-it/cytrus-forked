@@ -4,12 +4,6 @@
 
 #include <algorithm>
 #include <memory>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/bitset.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/vector.hpp>
 #include "common/archives.h"
 #include "common/assert.h"
 #include "common/common_funcs.h"
@@ -44,7 +38,6 @@ SERIALIZE_IMPL(AddressMapping)
 
 template <class Archive>
 void Process::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<Object>(*this);
     ar & handle_table;
     ar & codeset; // TODO: Replace with apploader reference
     ar & resource_limit;
@@ -82,7 +75,6 @@ CodeSet::~CodeSet() {}
 
 template <class Archive>
 void CodeSet::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<Object>(*this);
     ar & memory;
     ar & segments;
     ar & entrypoint;

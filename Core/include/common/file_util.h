@@ -21,12 +21,6 @@
 #include <string_view>
 #include <type_traits>
 #include <vector>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/split_member.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/vector.hpp>
-#include <boost/serialization/wrapper.hpp>
 #include "common/common_types.h"
 #ifdef _MSC_VER
 #include "common/string_util.h"
@@ -64,7 +58,6 @@ enum class UserPath {
 std::string SerializePath(const std::string& input, bool is_saving);
 
 // A serializable path string
-struct Path : public boost::serialization::wrapper_traits<const Path> {
     std::string& str;
 
     explicit Path(std::string& _str) : str(_str) {}
@@ -85,7 +78,7 @@ struct Path : public boost::serialization::wrapper_traits<const Path> {
     }
 
     BOOST_SERIALIZATION_SPLIT_MEMBER();
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 // FileSystem tree node/
@@ -105,7 +98,7 @@ private:
         ar& Path::make(virtualName);
         ar & children;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 // Returns true if file filename exists
@@ -498,7 +491,7 @@ private:
             Seek(pos, SEEK_SET);
         }
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class CryptoIOFile : public IOFile {
@@ -529,7 +522,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 template <std::ios_base::openmode o, typename T>
@@ -546,5 +539,3 @@ void OpenFStream(T& fstream, const std::string& filename, std::ios_base::openmod
 #endif
 }
 
-BOOST_CLASS_EXPORT_KEY(FileUtil::IOFile)
-BOOST_CLASS_EXPORT_KEY(FileUtil::CryptoIOFile)

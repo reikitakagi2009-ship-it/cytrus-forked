@@ -15,7 +15,6 @@
 #include <unordered_map>
 #include <vector>
 #include <boost/optional.hpp>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "common/swap.h"
 #include "core/hle/service/nwm/uds_common.h"
@@ -563,7 +562,7 @@ private:
             ar & connected;
             ar & node_id;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     std::map<MacAddress, Node> node_map;
@@ -589,7 +588,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Service::NWM

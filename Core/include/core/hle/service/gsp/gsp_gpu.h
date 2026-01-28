@@ -8,7 +8,6 @@
 #include <memory>
 #include <string>
 #include <boost/optional/optional.hpp>
-#include <boost/serialization/export.hpp>
 #include "common/bit_field.h"
 #include "common/common_types.h"
 #include "core/hle/kernel/event.h"
@@ -84,7 +83,7 @@ public:
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class GSP_GPU final : public ServiceFramework<GSP_GPU, SessionData> {
@@ -403,7 +402,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Service::GSP

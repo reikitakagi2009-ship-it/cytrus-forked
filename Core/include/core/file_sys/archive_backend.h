@@ -8,8 +8,6 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/vector.hpp>
 #include "common/bit_field.h"
 #include "common/common_types.h"
 #include "common/swap.h"
@@ -92,7 +90,7 @@ private:
             break;
         }
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// Parameters of the archive, as specified in the Create or Format call.
@@ -244,7 +242,7 @@ private:
     void serialize(Archive& ar, const unsigned int) {
         ar & delay_generator;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class ArchiveFactory : NonCopyable {
@@ -288,7 +286,7 @@ public:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {}
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace FileSys

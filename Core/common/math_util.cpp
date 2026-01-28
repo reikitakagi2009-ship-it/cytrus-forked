@@ -26,9 +26,9 @@
 #endif
 
 namespace Common {
-std::pair<u8, u8> FindMinMax(const std::span<const u8>& data) {
-    const size_t count = data.size();
-    const u8* data_ptr = data.data();
+std::pair<u8, u8> FindMinMax(const u8* data, std::size_t size) {
+    const size_t count = size;
+    const u8* data_ptr = data;
     u8 final_min, final_max;
 #if defined(CITRA_HAS_SSE42) || defined(CITRA_HAS_NEON)
     u8 simd_min = 0xFF;
@@ -87,9 +87,9 @@ std::pair<u8, u8> FindMinMax(const std::span<const u8>& data) {
     return {final_min, final_max};
 }
 
-std::pair<u16, u16> FindMinMax(const std::span<const u16>& data) {
-    const size_t count = data.size();
-    const u16* data_ptr = data.data();
+std::pair<u16, u16> FindMinMax(const u16* data, std::size_t size) {
+    const size_t count = size;
+    const u16* data_ptr = data;
     u16 final_min, final_max;
 
 #if defined(CITRA_HAS_SSE42) || defined(CITRA_HAS_NEON)

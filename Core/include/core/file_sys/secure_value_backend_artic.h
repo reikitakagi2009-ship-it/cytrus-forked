@@ -41,13 +41,11 @@ protected:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<SecureValueBackend>(*this);
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 
 private:
     std::shared_ptr<Network::ArticBase::Client> client;
 };
 } // namespace FileSys
 
-BOOST_CLASS_EXPORT_KEY(FileSys::ArticSecureValueBackend)

@@ -9,7 +9,6 @@
 #include <cstddef>
 #include <memory>
 #include <vector>
-#include <boost/serialization/version.hpp>
 #include "common/bit_field.h"
 #include "common/common_funcs.h"
 #include "common/common_types.h"
@@ -398,7 +397,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 std::shared_ptr<Module> GetModule(Core::System& system);

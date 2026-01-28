@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <boost/serialization/access.hpp>
 
 #include "common/bit_field.h"
 #include "common/common_funcs.h"
@@ -61,7 +60,7 @@ private:
         ar & color_fill_bottom.raw;
         ar & backlight_bottom;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 static_assert(std::is_standard_layout_v<RegsLcd>, "Structure does not use standard layout");
 

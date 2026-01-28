@@ -8,9 +8,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/unique_ptr.hpp>
-#include <boost/serialization/vector.hpp>
 #include "common/common_types.h"
 #include "common/file_util.h"
 #include "core/file_sys/archive_backend.h"
@@ -49,11 +46,10 @@ protected:
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<FileBackend>(*this);
         ar & mode.hex;
         ar & file;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class DiskDirectory : public DirectoryBackend {
@@ -82,7 +78,6 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<DirectoryBackend>(*this);
         ar & directory;
         u64 child_index;
         if (Archive::is_saving::value) {
@@ -93,10 +88,8 @@ private:
             children_iterator = directory.children.begin() + child_index;
         }
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace FileSys
 
-BOOST_CLASS_EXPORT_KEY(FileSys::DiskFile)
-BOOST_CLASS_EXPORT_KEY(FileSys::DiskDirectory)

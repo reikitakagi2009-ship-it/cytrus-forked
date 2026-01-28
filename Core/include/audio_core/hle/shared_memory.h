@@ -8,7 +8,6 @@
 #include <cstddef>
 #include <memory>
 #include <type_traits>
-#include <boost/serialization/access.hpp>
 #include "audio_core/audio_types.h"
 #include "audio_core/hle/common.h"
 #include "common/bit_field.h"
@@ -62,7 +61,7 @@ private:
     void serialize(Archive& ar, const unsigned int) {
         ar & storage;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 static_assert(std::is_trivially_copyable<u32_dsp>::value, "u32_dsp isn't trivially copyable");
 

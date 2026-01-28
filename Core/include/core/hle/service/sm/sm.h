@@ -8,10 +8,6 @@
 #include <string>
 #include <type_traits>
 #include <unordered_map>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/split_member.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/unordered_map.hpp>
 #include "core/hle/kernel/client_port.h"
 #include "core/hle/kernel/object.h"
 #include "core/hle/kernel/server_port.h"
@@ -105,7 +101,7 @@ private:
 
     BOOST_SERIALIZATION_SPLIT_MEMBER()
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Service::SM

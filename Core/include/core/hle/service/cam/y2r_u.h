@@ -7,7 +7,6 @@
 #include <array>
 #include <memory>
 #include <string>
-#include <boost/serialization/array.hpp>
 #include "common/common_types.h"
 #include "core/hle/result.h"
 #include "core/hle/service/service.h"
@@ -101,7 +100,7 @@ private:
         ar & transfer_unit;
         ar & gap;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 struct ConversionConfiguration {
@@ -142,7 +141,7 @@ private:
         ar & src_YUYV;
         ar & dst;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 struct DitheringWeightParams {
@@ -183,7 +182,7 @@ private:
         ar & w3_xEven_yOdd;
         ar & w3_xOdd_yOdd;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 struct ConversionParameters {
@@ -359,7 +358,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 void InstallInterfaces(Core::System& system);

@@ -6,7 +6,6 @@
 
 #include <array>
 #include <memory>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "core/hle/kernel/object.h"
 
@@ -71,7 +70,7 @@ private:
     std::string m_name;
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };
@@ -91,7 +90,7 @@ public:
 private:
     std::array<std::shared_ptr<ResourceLimit>, 4> resource_limits;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

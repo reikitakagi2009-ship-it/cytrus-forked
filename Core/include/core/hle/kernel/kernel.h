@@ -17,7 +17,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "core/hle/kernel/memory.h"
 #include "core/hle/result.h"
@@ -130,7 +129,7 @@ struct New3dsHwCapabilities {
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class KernelSystem {
@@ -423,7 +422,7 @@ private:
      */
     bool main_thread_extended_sleep = false;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

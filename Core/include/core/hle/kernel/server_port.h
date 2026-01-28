@@ -7,7 +7,6 @@
 #include <memory>
 #include <string>
 #include <tuple>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "core/hle/kernel/object.h"
 #include "core/hle/kernel/server_session.h"
@@ -64,7 +63,7 @@ public:
     void Acquire(Thread* thread) override;
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <boost/serialization/binary_object.hpp>
 
 #include "common/vector_math.h"
 #include "video_core/pica_types.h"
@@ -68,7 +67,7 @@ private:
         ar & buffer;
         ar & index;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Pica

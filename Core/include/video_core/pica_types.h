@@ -6,7 +6,6 @@
 
 #include <cmath>
 #include <cstring>
-#include <boost/serialization/access.hpp>
 #include "common/common_types.h"
 
 namespace Pica {
@@ -146,7 +145,7 @@ private:
     // TODO: Perform proper arithmetic on this!
     float value;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version) {
         ar & value;

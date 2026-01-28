@@ -7,7 +7,6 @@
 #include <algorithm>
 #include <cstddef>
 #include <memory>
-#include <boost/serialization/unique_ptr.hpp>
 #include "common/common_types.h"
 #include "core/hle/result.h"
 #include "delay_generator.h"
@@ -107,7 +106,7 @@ protected:
     void serialize(Archive& ar, const unsigned int) {
         ar & delay_generator;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace FileSys

@@ -3,7 +3,6 @@
 // Refer to the license.txt file included.
 
 #include <cstring>
-#include <boost/serialization/binary_object.hpp>
 #include "common/archives.h"
 #include "core/hle/kernel/config_mem.h"
 
@@ -34,8 +33,6 @@ ConfigMemDef& Handler::GetConfigMem() {
 
 template <class Archive>
 void Handler::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<BackingMem>(*this);
-    ar& boost::serialization::make_binary_object(&config_mem, sizeof(config_mem));
 }
 SERIALIZE_IMPL(Handler)
 

@@ -7,7 +7,6 @@
 #include <array>
 #include <atomic>
 #include <span>
-#include <boost/serialization/array.hpp>
 #include "common/bit_field.h"
 #include "common/swap.h"
 #include "core/frontend/input.h"
@@ -88,7 +87,7 @@ private:
             LoadInputDevices(); // zl, zr, c_stick are loaded here
         }
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Service::IR

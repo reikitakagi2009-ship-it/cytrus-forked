@@ -6,7 +6,6 @@
 
 #include <optional>
 #include <unordered_map>
-#include <boost/serialization/base_object.hpp>
 #include "common/common_types.h"
 #include "core/file_sys/errors.h"
 #include "core/file_sys/secure_value_backend.h"
@@ -39,11 +38,10 @@ struct ClientSlot : public Kernel::SessionRequestHandler::SessionDataBase {
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<Kernel::SessionRequestHandler::SessionDataBase>(
             *this);
         ar & program_id;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class FS_USER final : public ServiceFramework<FS_USER, ClientSlot> {
@@ -756,7 +754,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 void InstallInterfaces(Core::System& system);
@@ -764,5 +762,3 @@ void InstallInterfaces(Core::System& system);
 } // namespace Service::FS
 
 SERVICE_CONSTRUCT(Service::FS::FS_USER)
-BOOST_CLASS_EXPORT_KEY(Service::FS::FS_USER)
-BOOST_CLASS_EXPORT_KEY(Service::FS::ClientSlot)

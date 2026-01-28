@@ -6,9 +6,6 @@
 
 #include <cstddef>
 #include <memory>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/split_member.hpp>
-#include <boost/serialization/version.hpp>
 #include "common/common_types.h"
 #include "core/arm/skyeye_common/arm_regformat.h"
 #include "core/arm/skyeye_common/vfp/asm_vfp.h"
@@ -57,7 +54,7 @@ public:
         u32 fpexc{};
 
     private:
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
 
         template <class Archive>
         void serialize(Archive& ar, const unsigned int file_version) {
@@ -207,7 +204,7 @@ protected:
 private:
     u32 id;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 
     template <class Archive>
     void save(Archive& ar, const unsigned int file_version) const {

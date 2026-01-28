@@ -12,8 +12,6 @@
 #include <mutex>
 #include <string>
 #include <vector>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/shared_ptr.hpp>
 #include "common/common_types.h"
 #include "common/construct.h"
 #include "common/swap.h"
@@ -1117,7 +1115,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 std::shared_ptr<Module> GetModule(Core::System& system);

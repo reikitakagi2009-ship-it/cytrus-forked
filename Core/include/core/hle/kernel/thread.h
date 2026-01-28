@@ -14,7 +14,6 @@
 #include <unordered_map>
 #include <vector>
 #include <boost/container/flat_set.hpp>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "common/thread_queue_list.h"
 #include "core/arm/arm_interface.h"
@@ -78,7 +77,7 @@ public:
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class ThreadManager {
@@ -167,7 +166,7 @@ private:
     friend class Thread;
     friend class KernelSystem;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };
@@ -309,10 +308,10 @@ public:
     VAddr tls_address; ///< Virtual address of the Thread Local Storage of the thread
 
     /// Mutexes currently held by this thread, which will be released when it exits.
-    boost::container::flat_set<std::shared_ptr<Mutex>> held_mutexes{};
+    // boost::container::flat_set<std::shared_ptr<Mutex>> held_mutexes{};
 
     /// Mutexes that this thread is currently waiting for.
-    boost::container::flat_set<std::shared_ptr<Mutex>> pending_mutexes{};
+    // boost::container::flat_set<std::shared_ptr<Mutex>> pending_mutexes{};
 
     std::weak_ptr<Process> owner_process{}; ///< Process that owns this thread
 
@@ -334,7 +333,7 @@ public:
 private:
     ThreadManager& thread_manager;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };
@@ -355,7 +354,7 @@ std::shared_ptr<Thread> SetupMainThread(KernelSystem& kernel, u32 entry_point, u
 BOOST_CLASS_EXPORT_KEY(Kernel::Thread)
 BOOST_CLASS_EXPORT_KEY(Kernel::WakeupCallback)
 
-namespace boost::serialization {
+namespace // boost::serialization {
 
 template <class Archive>
 void save_construct_data(Archive& ar, const Kernel::Thread* t, const unsigned int) {
@@ -369,4 +368,4 @@ void load_construct_data(Archive& ar, Kernel::Thread* t, const unsigned int) {
     ::new (t) Kernel::Thread(Core::Global<Kernel::KernelSystem>(), core_id);
 }
 
-} // namespace boost::serialization
+} // namespace // boost::serialization

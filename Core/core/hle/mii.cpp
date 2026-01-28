@@ -3,7 +3,6 @@
 // Refer to the license.txt file included.
 
 #include <boost/crc.hpp>
-#include <boost/serialization/binary_object.hpp>
 #include "common/archives.h"
 #include "core/hle/mii.h"
 
@@ -13,13 +12,11 @@ SERIALIZE_EXPORT_IMPL(Mii::ChecksummedMiiData)
 namespace Mii {
 template <class Archive>
 void MiiData::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::make_binary_object(this, sizeof(MiiData));
 }
 SERIALIZE_IMPL(MiiData)
 
 template <class Archive>
 void ChecksummedMiiData::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::make_binary_object(this, sizeof(ChecksummedMiiData));
 }
 SERIALIZE_IMPL(ChecksummedMiiData)
 

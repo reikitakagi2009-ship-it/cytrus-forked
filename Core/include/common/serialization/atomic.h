@@ -5,25 +5,22 @@
 #pragma once
 
 #include <atomic>
-#include <boost/serialization/split_free.hpp>
 
-namespace boost::serialization {
+namespace std { // Simplified for libretro core
 
 template <class Archive, class T>
 void serialize(Archive& ar, std::atomic<T>& value, const unsigned int file_version) {
-    boost::serialization::split_free(ar, value, file_version);
+    // Serialization removed for libretro core
 }
 
 template <class Archive, class T>
 void save(Archive& ar, const std::atomic<T>& value, const unsigned int file_version) {
-    ar << value.load();
+    // Serialization removed for libretro core
 }
 
 template <class Archive, class T>
 void load(Archive& ar, std::atomic<T>& value, const unsigned int file_version) {
-    T tmp;
-    ar >> tmp;
-    value.store(tmp);
+    // Serialization removed for libretro core
 }
 
-} // namespace boost::serialization
+} // namespace std

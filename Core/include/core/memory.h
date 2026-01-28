@@ -6,8 +6,6 @@
 #include <array>
 #include <cstddef>
 #include <string>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/vector.hpp>
 #include "common/common_types.h"
 #include "common/memory_ref.h"
 
@@ -111,7 +109,7 @@ private:
             pointers.raw[i] = pointers.refs[i].GetPtr();
         }
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// Physical memory regions as seen from the ARM11
@@ -671,7 +669,7 @@ private:
     class Impl;
     std::unique_ptr<Impl> impl;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version);
 

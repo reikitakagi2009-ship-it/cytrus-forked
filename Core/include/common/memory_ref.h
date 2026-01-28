@@ -7,9 +7,6 @@
 #include <memory>
 #include <span>
 #include <vector>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/vector.hpp>
 #include "common/assert.h"
 #include "common/common_types.h"
 
@@ -24,7 +21,7 @@ public:
 private:
     template <class Archive>
     void serialize(Archive&, const unsigned int) {}
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// Backing memory implemented by a local buffer
@@ -58,13 +55,11 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<BackingMem>(*this);
         ar & data;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
-BOOST_CLASS_EXPORT_KEY(BufferMem);
 
 /**
  * A managed reference to host-side memory.
@@ -155,5 +150,5 @@ private:
         ar & offset;
         Init();
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };

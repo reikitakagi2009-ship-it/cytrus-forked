@@ -5,7 +5,6 @@
 #pragma once
 
 #include <string>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "core/hle/kernel/object.h"
 #include "core/hle/kernel/wait_object.h"
@@ -48,7 +47,7 @@ public:
     Result Release(s32* out_count, s32 release_count);
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <boost/serialization/export.hpp>
 #include "common/bit_field.h"
 #include "common/common_types.h"
 
@@ -178,7 +177,7 @@ struct MiiData {
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 static_assert(sizeof(MiiData) == 0x5C, "MiiData structure has incorrect size");
@@ -228,7 +227,7 @@ public:
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 #pragma pack(pop)
 static_assert(sizeof(ChecksummedMiiData) == 0x60,

@@ -8,7 +8,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <boost/serialization/vector.hpp>
 #include "common/common_types.h"
 #include "network/room.h"
 
@@ -41,7 +40,7 @@ private:
         ar & destination_address;
         ar & channel;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// Represents a chat message.

@@ -18,11 +18,10 @@ struct ClientSlot : public Kernel::SessionRequestHandler::SessionDataBase {
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<Kernel::SessionRequestHandler::SessionDataBase>(
             *this);
         ar & loaded_crs;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class RO final : public ServiceFramework<RO, ClientSlot> {
@@ -165,9 +164,8 @@ private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
         DEBUG_SERIALIZATION_POINT;
-        ar& boost::serialization::base_object<Kernel::SessionRequestHandler>(*this);
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 void InstallInterfaces(Core::System& system);
@@ -175,5 +173,3 @@ void InstallInterfaces(Core::System& system);
 } // namespace Service::LDR
 
 SERVICE_CONSTRUCT(Service::LDR::RO)
-BOOST_CLASS_EXPORT_KEY(Service::LDR::RO)
-BOOST_CLASS_EXPORT_KEY(Service::LDR::ClientSlot)

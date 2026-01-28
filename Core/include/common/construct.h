@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <boost/serialization/serialization.hpp>
 
 /// Allows classes to define `save_construct` and `load_construct` methods for serialization
 /// This is used where we don't call the default constructor during deserialization, as a shortcut
@@ -22,7 +21,7 @@ public:
 };
 
 #define BOOST_SERIALIZATION_CONSTRUCT(T)                                                           \
-    namespace boost::serialization {                                                               \
+    namespace // boost::serialization {                                                               \
     template <class Archive>                                                                       \
     void save_construct_data(Archive& ar, const T* t, const unsigned int file_version) {           \
         construct_access::save_construct(ar, t, file_version);                                     \

@@ -7,7 +7,6 @@
 #include <atomic>
 #include <memory>
 #include <string>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "common/serialization/atomic.h"
 #include "core/global.h"
@@ -68,7 +67,7 @@ public:
 private:
     std::atomic<u32> object_id;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };
@@ -98,7 +97,7 @@ inline std::shared_ptr<T> DynamicObjectCast(std::shared_ptr<Object> object) {
 BOOST_CLASS_EXPORT_KEY(Kernel::Object)
 
 #define CONSTRUCT_KERNEL_OBJECT(T)                                                                 \
-    namespace boost::serialization {                                                               \
+    namespace // boost::serialization {                                                               \
     template <class Archive>                                                                       \
     void load_construct_data(Archive& ar, T* t, const unsigned int file_version) {                 \
         ::new (t) T(Core::Global<Kernel::KernelSystem>());                                         \

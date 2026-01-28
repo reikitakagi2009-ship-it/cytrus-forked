@@ -58,10 +58,8 @@ private:
     u64 size{};
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<DiskFile>(*this);
         ar & size;
     }
-    friend class boost::serialization::access;
 };
 
 class ExtSaveDataDelayGenerator : public DelayGenerator {
@@ -167,9 +165,7 @@ private:
     ExtSaveDataArchive() = default;
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<SaveDataArchive>(*this);
     }
-    friend class boost::serialization::access;
 };
 
 struct ExtSaveDataArchivePath {
@@ -431,6 +427,5 @@ ResultVal<ArchiveFormatInfo> ArchiveFactory_ExtSaveData::GetFormatInfo(const Pat
 }
 } // namespace FileSys
 
-BOOST_CLASS_EXPORT(FileSys::FixSizeDiskFile)
 SERIALIZE_EXPORT_IMPL(FileSys::ExtSaveDataDelayGenerator)
 SERIALIZE_EXPORT_IMPL(FileSys::ExtSaveDataArchive)

@@ -6,9 +6,6 @@
 
 #include <memory>
 #include <string>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/string.hpp>
 #include "core/file_sys/archive_backend.h"
 #include "core/hle/result.h"
 
@@ -46,10 +43,9 @@ protected:
     SDMCArchive() = default;
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<ArchiveBackend>(*this);
         ar & mount_point;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// File system interface to the SDMC archive
@@ -78,16 +74,12 @@ private:
     ArchiveFactory_SDMC() = default;
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<ArchiveFactory>(*this);
         ar & sdmc_directory;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class SDMCDelayGenerator;
 
 } // namespace FileSys
 
-BOOST_CLASS_EXPORT_KEY(FileSys::SDMCArchive)
-BOOST_CLASS_EXPORT_KEY(FileSys::ArchiveFactory_SDMC)
-BOOST_CLASS_EXPORT_KEY(FileSys::SDMCDelayGenerator)

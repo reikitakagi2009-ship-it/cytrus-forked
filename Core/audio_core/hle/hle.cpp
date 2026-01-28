@@ -4,11 +4,6 @@
 
 #include <algorithm>
 
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/vector.hpp>
-#include <boost/serialization/weak_ptr.hpp>
 #include "audio_core/audio_types.h"
 #include "audio_core/hle/aac_decoder.h"
 #include "audio_core/hle/common.h"
@@ -33,12 +28,12 @@ namespace AudioCore {
 
 DspHle::DspHle(Core::System& system) : DspHle(system, system.Memory(), system.CoreTiming()) {}
 
-template <class Archive>
-void DspHle::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<DspInterface>(*this);
-    ar&* impl.get();
-}
-SERIALIZE_IMPL(DspHle)
+// Serialization removed
+// template <class Archive>
+// void DspHle::serialize(Archive& ar, const unsigned int) {
+//     ar&* impl.get();
+// }
+// SERIALIZE_IMPL(DspHle)
 
 // The value below is the "perfect" mathematical ratio of ARM11 cycles per audio frame, samples per
 // frame * teaklite cycles per sample * 2 ARM11 cycles/teaklite cycle
@@ -108,7 +103,6 @@ private:
         ar & mixers;
         // interrupt_handler is reregistered when loading state from DSP_DSP
     }
-    friend class boost::serialization::access;
 };
 
 DspHle::Impl::Impl(DspHle& parent_, Memory::MemorySystem& memory, Core::Timing& timing)

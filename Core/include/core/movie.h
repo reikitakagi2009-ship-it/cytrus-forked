@@ -6,7 +6,6 @@
 
 #include <functional>
 #include <span>
-#include <boost/serialization/vector.hpp>
 #include "common/common_types.h"
 
 namespace Service {
@@ -189,7 +188,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 } // namespace Core
 

@@ -4,7 +4,6 @@
 
 #include "atomic"
 
-#include <boost/serialization/unique_ptr.hpp>
 #include "common/common_types.h"
 #include "core/file_sys/archive_backend.h"
 #include "core/file_sys/artic_cache.h"
@@ -166,10 +165,9 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<ArchiveBackend>(*this);
         ar & archive_handle;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class ArticFileBackend : public FileBackend {
@@ -222,10 +220,9 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<FileBackend>(*this);
         ar & file_handle;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class ArticDirectoryBackend : public DirectoryBackend {
@@ -256,13 +253,9 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<DirectoryBackend>(*this);
         ar & dir_handle;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 } // namespace FileSys
 
-BOOST_CLASS_EXPORT_KEY(FileSys::ArticArchive)
-BOOST_CLASS_EXPORT_KEY(FileSys::ArticFileBackend)
-BOOST_CLASS_EXPORT_KEY(FileSys::ArticDirectoryBackend)

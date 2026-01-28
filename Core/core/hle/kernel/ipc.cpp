@@ -3,7 +3,6 @@
 // Refer to the license.txt file included.
 
 #include <algorithm>
-#include <boost/serialization/shared_ptr.hpp>
 #include "common/alignment.h"
 #include "common/archives.h"
 #include "common/memory_ref.h"

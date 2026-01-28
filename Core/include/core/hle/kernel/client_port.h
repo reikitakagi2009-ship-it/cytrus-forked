@@ -6,7 +6,6 @@
 
 #include <memory>
 #include <string>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "core/hle/kernel/object.h"
 #include "core/hle/kernel/server_port.h"
@@ -62,7 +61,7 @@ private:
     friend class KernelSystem;
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

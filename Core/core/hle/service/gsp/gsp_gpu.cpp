@@ -4,9 +4,6 @@
 
 #include <span>
 #include <vector>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/optional.hpp>
-#include <boost/serialization/shared_ptr.hpp>
 #include "common/archives.h"
 #include "common/bit_field.h"
 #include "common/hacks/hack_manager.h"
@@ -724,7 +721,6 @@ SessionData* GSP_GPU::FindRegisteredThreadData(u32 thread_id) {
 template <class Archive>
 void GSP_GPU::serialize(Archive& ar, const unsigned int) {
     DEBUG_SERIALIZATION_POINT;
-    ar& boost::serialization::base_object<Kernel::SessionRequestHandler>(*this);
     ar & shared_memory;
     ar & active_thread_id;
     ar & active_client_thread_id;
@@ -788,7 +784,6 @@ std::unique_ptr<Kernel::SessionRequestHandler::SessionDataBase> GSP_GPU::MakeSes
 
 template <class Archive>
 void SessionData::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<Kernel::SessionRequestHandler::SessionDataBase>(*this);
     ar & gsp;
     ar & interrupt_event;
     ar & thread_id;

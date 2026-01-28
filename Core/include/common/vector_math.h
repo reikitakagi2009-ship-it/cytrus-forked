@@ -38,7 +38,6 @@
 #include <cmath>
 #include <cstring>
 #include <type_traits>
-#include <boost/serialization/access.hpp>
 
 namespace Common {
 
@@ -51,7 +50,7 @@ class Vec4;
 
 template <typename T>
 class Vec2 {
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version) {
         ar & x;
@@ -219,7 +218,7 @@ inline float Vec2<float>::Normalize() {
 
 template <typename T>
 class Vec3 {
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version) {
         ar & x;
@@ -449,7 +448,7 @@ using Vec3u = Vec3<unsigned int>;
 
 template <typename T>
 class Vec4 {
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version) {
         ar & x;

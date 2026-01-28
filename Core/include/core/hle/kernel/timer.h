@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "core/core_timing.h"
 #include "core/hle/kernel/object.h"
@@ -35,7 +34,7 @@ private:
     friend class Timer;
     friend class KernelSystem;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };
@@ -113,7 +112,7 @@ private:
 
     friend class KernelSystem;
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

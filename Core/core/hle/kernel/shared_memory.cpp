@@ -2,10 +2,6 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/utility.hpp>
-#include <boost/serialization/weak_ptr.hpp>
 #include "common/archives.h"
 #include "common/logging/log.h"
 #include "core/hle/kernel/errors.h"
@@ -223,7 +219,6 @@ const u8* SharedMemory::GetPointer(u32 offset) const {
 
 template <class Archive>
 void SharedMemory::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<Object>(*this);
     ar & linear_heap_phys_offset;
     ar & backing_blocks;
     ar & size;

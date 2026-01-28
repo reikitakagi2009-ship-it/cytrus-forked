@@ -2,8 +2,6 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/string.hpp>
 #include "common/archives.h"
 #include "common/assert.h"
 #include "core/hle/kernel/event.h"
@@ -62,7 +60,6 @@ void Event::WakeupAllWaitingThreads() {
 
 template <class Archive>
 void Event::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<WaitObject>(*this);
     ar & reset_type;
     ar & signaled;
     ar & name;

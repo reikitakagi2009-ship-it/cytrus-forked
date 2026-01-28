@@ -9,10 +9,6 @@
 #include <memory>
 #include <optional>
 #include <vector>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/optional.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/vector.hpp>
 #include "core/frontend/input.h"
 #include "core/global.h"
 #include "core/hle/kernel/event.h"
@@ -135,7 +131,7 @@ private:
         ar & object;
         ar & buffer;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 enum class AppletPos : u32 {
@@ -177,7 +173,7 @@ private:
         ar & hmac;
         ar & source_program_id;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 struct ApplicationJumpParameters {
@@ -197,7 +193,7 @@ private:
         ar & current_title_id;
         ar & current_media_type;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 struct ApplicationStartParameters {
@@ -210,7 +206,7 @@ private:
         ar & next_title_id;
         ar & next_media_type;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 enum class DisplayBufferMode : u32_le {
@@ -246,7 +242,7 @@ private:
         ar & bottom_screen_right_offset;
         ar & bottom_screen_format;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 static_assert(sizeof(CaptureBufferInfo) == 0x20, "CaptureBufferInfo struct has incorrect size");
 
@@ -464,7 +460,7 @@ private:
             ar & notification_event;
             ar & parameter_event;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     // Holds data about the concurrently running applets in the system.
@@ -553,7 +549,7 @@ private:
             LoadInputDevices();
         }
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Service::APT

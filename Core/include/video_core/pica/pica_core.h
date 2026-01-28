@@ -90,7 +90,7 @@ public:
         }
 
     private:
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
         template <class Archive>
         void serialize(Archive& ar, const u32 file_version);
     };
@@ -108,7 +108,7 @@ public:
         }
 
     private:
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
         template <class Archive>
         void serialize(Archive& ar, const u32 file_version) {
             ar & input_vertex;
@@ -181,10 +181,9 @@ public:
         };
 
     private:
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
         template <class Archive>
         void serialize(Archive& ar, const u32 file_version) {
-            ar& boost::serialization::make_binary_object(this, sizeof(ProcTex));
         }
     };
 
@@ -221,10 +220,9 @@ public:
         u32 lut_dirty = LutAllDirty;
 
     private:
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
         template <class Archive>
         void serialize(Archive& ar, const u32 file_version) {
-            ar& boost::serialization::make_binary_object(this, sizeof(Lighting));
         }
     };
 
@@ -249,10 +247,9 @@ public:
         bool lut_dirty = true;
 
     private:
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
         template <class Archive>
         void serialize(Archive& ar, const u32 file_version) {
-            ar& boost::serialization::make_binary_object(this, sizeof(Fog));
         }
     };
 
@@ -269,7 +266,7 @@ public:
     ImmediateModeState immediate{};
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const u32 file_version) {
         ar & regs_lcd;

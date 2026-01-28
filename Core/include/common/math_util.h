@@ -76,7 +76,7 @@ struct Rectangle {
 template <typename T>
 Rectangle(T, T, T, T) -> Rectangle<T>;
 
-std::pair<u8, u8> FindMinMax(const std::span<const u8>& data);
-std::pair<u16, u16> FindMinMax(const std::span<const u16>& data);
+std::pair<u8, u8> FindMinMax(const u8* data, std::size_t size);
+std::pair<u16, u16> FindMinMax(const u16* data, std::size_t size);
 
 } // namespace Common

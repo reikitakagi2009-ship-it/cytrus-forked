@@ -5,7 +5,6 @@
 #pragma once
 
 #include <memory>
-#include <boost/serialization/export.hpp>
 #include "core/hle/kernel/object.h"
 
 namespace Kernel {
@@ -27,7 +26,7 @@ public:
     std::shared_ptr<ClientPort> port; ///< The port that this session is associated with (optional).
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

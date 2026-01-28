@@ -253,7 +253,6 @@ public:
     private:
         template <class Archive>
         void serialize(Archive& ar, const unsigned int) {
-            ar& boost::serialization::base_object<Kernel::SessionRequestHandler::SessionDataBase>(
                 *this);
             ar & ncch_program_id;
             ar & data_path_type;
@@ -261,7 +260,7 @@ public:
             ar & path;
             ar & file;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     class Interface : public ServiceFramework<Interface, SessionData> {
@@ -632,7 +631,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// Initialize CECD service(s)
@@ -641,5 +640,3 @@ void InstallInterfaces(Core::System& system);
 } // namespace Service::CECD
 
 SERVICE_CONSTRUCT(Service::CECD::Module)
-BOOST_CLASS_EXPORT_KEY(Service::CECD::Module)
-BOOST_CLASS_EXPORT_KEY(Service::CECD::Module::SessionData)

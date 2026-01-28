@@ -8,8 +8,6 @@
 #include <span>
 #include <string>
 #include <unordered_map>
-#include <boost/serialization/unique_ptr.hpp>
-#include <boost/serialization/unordered_map.hpp>
 #include "common/common_types.h"
 #include "core/file_sys/archive_backend.h"
 #include "core/file_sys/archive_source_sd_savedata.h"
@@ -339,7 +337,7 @@ private:
         ar & next_handle;
         ar & sd_savedata_source;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace Service::FS

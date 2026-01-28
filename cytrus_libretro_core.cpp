@@ -15,7 +15,7 @@
 #include "core/frontend/applets/default_applets.h"
 #include "input_common/main.h"
 #include "network/network.h"
-#include "audio_core/audio_interface.h"
+#include "audio_core/dsp_interface.h"
 #include "video_core/gpu.h"
 #include "video_core/renderer_base.h"
 #include "common/settings.h"

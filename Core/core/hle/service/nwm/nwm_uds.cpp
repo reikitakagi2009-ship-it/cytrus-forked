@@ -4,8 +4,6 @@
 
 #include <algorithm>
 #include <cstring>
-#include <boost/serialization/list.hpp>
-#include <boost/serialization/map.hpp>
 #include <cryptopp/osrng.h>
 #include "common/archives.h"
 #include "common/common_types.h"
@@ -34,7 +32,6 @@ namespace Service::NWM {
 template <class Archive>
 void NWM_UDS::serialize(Archive& ar, const unsigned int) {
     DEBUG_SERIALIZATION_POINT;
-    ar& boost::serialization::base_object<Kernel::SessionRequestHandler>(*this);
     ar & node_map;
     ar & connection_event;
     ar & received_beacons;
@@ -1301,10 +1298,8 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<Kernel::HLERequestContext::WakeupCallback>(*this);
         ar & command_id;
     }
-    friend class boost::serialization::access;
 };
 
 void NWM_UDS::ConnectToNetwork(Kernel::HLERequestContext& ctx, u16 command_id,

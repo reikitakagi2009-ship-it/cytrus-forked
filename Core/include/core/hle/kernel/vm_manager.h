@@ -6,7 +6,6 @@
 
 #include <map>
 #include <memory>
-#include <boost/serialization/export.hpp>
 #include "common/common_types.h"
 #include "common/memory_ref.h"
 #include "core/hle/kernel/memory.h"
@@ -75,7 +74,7 @@ struct VirtualMemoryArea {
     bool CanBeMergedWith(const VirtualMemoryArea& next) const;
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };
@@ -230,7 +229,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 } // namespace Kernel
 

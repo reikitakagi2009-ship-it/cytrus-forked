@@ -5,7 +5,6 @@
 #pragma once
 
 #include <memory>
-#include <boost/serialization/export.hpp>
 #include "core/global.h"
 #include "core/hle/kernel/event.h"
 #include "core/hle/kernel/resource_limit.h"
@@ -33,7 +32,7 @@ public:
     private:
         template <class Archive>
         void serialize(Archive& ar, const unsigned int);
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     class Interface : public ServiceFramework<Interface, SessionData> {
@@ -987,7 +986,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 void InstallInterfaces(Core::System& system);

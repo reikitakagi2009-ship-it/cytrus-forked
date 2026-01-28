@@ -3,10 +3,6 @@
 // Refer to the license.txt file included.
 
 #include <algorithm>
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/vector.hpp>
 #include "common/archives.h"
 #include "common/common_types.h"
 #include "common/logging/log.h"
@@ -102,9 +98,7 @@ public:
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<WakeupCallback>(*this);
     }
-    friend class boost::serialization::access;
 };
 
 void AddressArbiter::WakeUp(ThreadWakeupReason reason, std::shared_ptr<Thread> thread,
@@ -192,7 +186,6 @@ Result AddressArbiter::ArbitrateAddress(std::shared_ptr<Thread> thread, Arbitrat
 
 template <class Archive>
 void AddressArbiter::serialize(Archive& ar, const unsigned int) {
-    ar& boost::serialization::base_object<Object>(*this);
     ar & name;
     ar & waiting_threads;
     ar & timeout_callback;

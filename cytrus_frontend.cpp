@@ -5,7 +5,7 @@
 
 #include "video_core/gpu.h"
 #include "video_core/renderer_base.h"
-#include "audio_core/audio_interface.h"
+#include "audio_core/dsp_interface.h"
 #include "core/hle/service/hid/hid.h"
 #include "core/hle/service/ir/ir_user.h"
 #include "common/settings.h"

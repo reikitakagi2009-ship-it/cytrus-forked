@@ -4,35 +4,19 @@
 
 #pragma once
 
-#include <boost/container/flat_set.hpp>
-#include <boost/serialization/split_free.hpp>
+#include <set>
 #include "common/common_types.h"
 
-namespace boost::serialization {
+namespace std { // Simplified for libretro core
 
 template <class Archive, class T>
-void save(Archive& ar, const boost::container::flat_set<T>& set, const unsigned int file_version) {
-    ar << static_cast<u64>(set.size());
-    for (auto& v : set) {
-        ar << v;
-    }
+void save(Archive& ar, const std::set<T>& set, const unsigned int file_version) {
+    // Serialization removed for libretro core
 }
 
 template <class Archive, class T>
-void load(Archive& ar, boost::container::flat_set<T>& set, const unsigned int file_version) {
-    u64 count{};
-    ar >> count;
-    set.clear();
-    for (u64 i = 0; i < count; i++) {
-        T value{};
-        ar >> value;
-        set.insert(value);
-    }
+void load(Archive& ar, std::set<T>& set, const unsigned int file_version) {
+    // Serialization removed for libretro core
 }
 
-template <class Archive, class T>
-void serialize(Archive& ar, boost::container::flat_set<T>& set, const unsigned int file_version) {
-    boost::serialization::split_free(ar, set, file_version);
-}
-
-} // namespace boost::serialization
+} // namespace std

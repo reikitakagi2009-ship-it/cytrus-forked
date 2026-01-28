@@ -5,7 +5,6 @@
 #pragma once
 
 #include <array>
-#include <boost/serialization/array.hpp>
 #include "audio_core/audio_types.h"
 #include "audio_core/hle/shared_memory.h"
 
@@ -63,7 +62,7 @@ private:
         ar & state.intermediate_mix_buffer;
         ar & state.output_format;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace AudioCore::HLE

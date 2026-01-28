@@ -11,12 +11,6 @@
 #include <unordered_map>
 #include <vector>
 #include <boost/optional.hpp>
-#include <boost/serialization/optional.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/unordered_map.hpp>
-#include <boost/serialization/vector.hpp>
-#include <boost/serialization/weak_ptr.hpp>
 #include <httplib.h>
 #include "common/thread.h"
 #include "core/hle/ipc_helpers.h"
@@ -116,7 +110,7 @@ private:
         ar & certificate;
         ar & private_key;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// Represents a root certificate chain, it contains a list of DER-encoded certificates for
@@ -136,7 +130,7 @@ struct RootCertChain {
             ar & session_id;
             ar & certificate;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     using Handle = u32;
@@ -151,7 +145,7 @@ private:
         ar & session_id;
         ar & certificates;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 struct ClCertAData {
@@ -183,7 +177,7 @@ public:
             ar & password;
             ar & port;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct BasicAuth {
@@ -196,7 +190,7 @@ public:
             ar & username;
             ar & password;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct RequestHeader {
@@ -210,7 +204,7 @@ public:
             ar & name;
             ar & value;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct SSLConfig {
@@ -225,7 +219,7 @@ public:
             ar & client_cert_ctx;
             ar & root_ca_chain;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct Param {
@@ -258,7 +252,7 @@ public:
             ar & value;
             ar & is_binary;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     using Params = std::multimap<std::string, Param>;
@@ -325,7 +319,6 @@ struct SessionData : public Kernel::SessionRequestHandler::SessionDataBase {
 private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<Kernel::SessionRequestHandler::SessionDataBase>(
             *this);
         ar & current_http_context;
         ar & session_id;
@@ -333,7 +326,7 @@ private:
         ar & num_client_certs;
         ar & initialized;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class HTTP_C final : public ServiceFramework<HTTP_C, SessionData> {
@@ -905,7 +898,6 @@ private:
         // There is a very good chance that saving/loading during a network connection will break,
         // regardless!
         DEBUG_SERIALIZATION_POINT;
-        ar& boost::serialization::base_object<Kernel::SessionRequestHandler>(*this);
         ar & ClCertA.certificate;
         ar & ClCertA.private_key;
         ar & ClCertA.init;
@@ -915,7 +907,7 @@ private:
         // NOTE: `contexts` is not serialized because it contains non-serializable data. (i.e.
         // handles to ongoing HTTP requests.) Serializing across HTTP contexts will break.
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 std::shared_ptr<HTTP_C> GetService(Core::System& system);
@@ -924,5 +916,3 @@ void InstallInterfaces(Core::System& system);
 
 } // namespace Service::HTTP
 
-BOOST_CLASS_EXPORT_KEY(Service::HTTP::HTTP_C)
-BOOST_CLASS_EXPORT_KEY(Service::HTTP::SessionData)

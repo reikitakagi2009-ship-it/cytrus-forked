@@ -6,10 +6,6 @@
 
 #include <array>
 #include <vector>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/deque.hpp>
-#include <boost/serialization/priority_queue.hpp>
-#include <boost/serialization/vector.hpp>
 #include <queue>
 #include "audio_core/audio_types.h"
 #include "audio_core/codec.h"
@@ -106,7 +102,7 @@ private:
             ar & play_position;
             ar & has_played;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct BufferOrder {
@@ -178,7 +174,7 @@ private:
             ar & rate_multiplier;
             ar & interpolation_mode;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
 
     } state;
 
@@ -198,7 +194,7 @@ private:
     void serialize(Archive& ar, const unsigned int) {
         ar & state;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace AudioCore::HLE

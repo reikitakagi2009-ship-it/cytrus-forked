@@ -15,8 +15,6 @@
 #include <zstd.h>
 #include <seekable_format/zstd_seekable.h>
 
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/unique_ptr.hpp>
 #include "common/alignment.h"
 #include "common/archives.h"
 #include "common/assert.h"
@@ -396,7 +394,6 @@ size_t Z3DSWriteIOFile::GetNextWriteHint() {
 template <class Archive>
 void Z3DSWriteIOFile::serialize(Archive& ar, const unsigned int) {
     is_serializing = true;
-    ar& boost::serialization::base_object<IOFile>(*this);
 
     ar & file;
     ar & written_uncompressed;
@@ -652,7 +649,6 @@ const Z3DSMetadata& Z3DSReadIOFile::Metadata() {
 template <class Archive>
 void Z3DSReadIOFile::serialize(Archive& ar, const unsigned int) {
     is_serializing = true;
-    ar& boost::serialization::base_object<IOFile>(*this);
 
     ar & file;
 

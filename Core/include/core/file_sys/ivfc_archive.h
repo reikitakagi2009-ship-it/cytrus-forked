@@ -8,8 +8,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/shared_ptr.hpp>
 #include "common/common_types.h"
 #include "common/file_util.h"
 #include "core/file_sys/archive_backend.h"
@@ -146,10 +144,9 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<FileBackend>(*this);
         ar & romfs_file;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class IVFCDirectory : public DirectoryBackend {
@@ -186,18 +183,12 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<FileBackend>(*this);
         ar & romfs_file;
         ar & data_offset;
         ar & data_size;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 } // namespace FileSys
 
-BOOST_CLASS_EXPORT_KEY(FileSys::IVFCFile)
-BOOST_CLASS_EXPORT_KEY(FileSys::IVFCFileInMemory)
-BOOST_CLASS_EXPORT_KEY(FileSys::IVFCDelayGenerator)
-BOOST_CLASS_EXPORT_KEY(FileSys::RomFSDelayGenerator)
-BOOST_CLASS_EXPORT_KEY(FileSys::ExeFSDelayGenerator)

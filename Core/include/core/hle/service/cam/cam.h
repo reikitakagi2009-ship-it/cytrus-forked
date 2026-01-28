@@ -9,11 +9,6 @@
 #include <future>
 #include <memory>
 #include <vector>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/deque.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/unique_ptr.hpp>
-#include <boost/serialization/version.hpp>
 #include "common/common_types.h"
 #include "common/swap.h"
 #include "core/global.h"
@@ -84,7 +79,7 @@ private:
         ar & crop_x1;
         ar & crop_y1;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 struct PackageParameterWithoutContext {
@@ -669,7 +664,7 @@ private:
             ar & format;
             ar & resolution;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct CameraConfig {
@@ -685,7 +680,7 @@ private:
             ar & current_context;
             ar & frame_rate;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     struct PortConfig {
@@ -746,7 +741,7 @@ private:
             ar & dest;
             ar & dest_size;
         }
-        friend class boost::serialization::access;
+        // Serialization removed for libretro core
     };
 
     void LoadCameraImplementation(CameraConfig& camera, int camera_id);
@@ -761,7 +756,7 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version);
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 std::shared_ptr<Module> GetModule(Core::System& system);

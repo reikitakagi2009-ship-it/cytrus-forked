@@ -8,10 +8,6 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/unordered_map.hpp>
-#include <boost/serialization/vector.hpp>
 #include "common/common_types.h"
 #include "core/file_sys/archive_backend.h"
 #include "core/hle/result.h"
@@ -35,7 +31,7 @@ private:
         ar & romfs_file;
         ar & update_romfs_file;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 /// File system interface to the SelfNCCH archive
@@ -60,10 +56,9 @@ private:
 
     template <class Archive>
     void serialize(Archive& ar, const unsigned int) {
-        ar& boost::serialization::base_object<ArchiveFactory>(*this);
         ar & ncch_data;
     }
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
 };
 
 class ExeFSSectionFile;
@@ -71,6 +66,3 @@ class SelfNCCHArchive;
 
 } // namespace FileSys
 
-BOOST_CLASS_EXPORT_KEY(FileSys::ArchiveFactory_SelfNCCH)
-BOOST_CLASS_EXPORT_KEY(FileSys::ExeFSSectionFile)
-BOOST_CLASS_EXPORT_KEY(FileSys::SelfNCCHArchive)

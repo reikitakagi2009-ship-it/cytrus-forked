@@ -64,7 +64,7 @@ private:
     std::function<void()> hle_notifier;
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const unsigned int);
 };

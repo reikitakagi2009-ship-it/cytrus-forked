@@ -35,7 +35,7 @@ struct Uniforms {
     }
 
 private:
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const u32 file_version) {
         ar & f;
@@ -88,7 +88,7 @@ private:
     u64 program_code_hash{0xDEADC0DE};
     u64 swizzle_data_hash{0xDEADC0DE};
 
-    friend class boost::serialization::access;
+    // Serialization removed for libretro core
     template <class Archive>
     void serialize(Archive& ar, const u32 file_version) {
         ar & uniforms;
