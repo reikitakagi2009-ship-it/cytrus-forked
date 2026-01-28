@@ -95,7 +95,7 @@ CFLAGS += -O2 -g -Wall -Wextra $(fpic)
 INCLUDES := -I. \
            -I$(CURDIR) \
            -I$(CURDIR)/Core \
-           -Ilibretro-common/include \
+           -I$(CURDIR)/Ilibretro-common/include \
            -ICore \
            -ICore/audio_core \
            -ICore/common \
